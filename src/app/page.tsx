@@ -1,18 +1,23 @@
 import ProductListSec from "@/components/common/ProductListSec";
 import Brands from "@/components/homepage/Brands";
-import DressStyle from "@/components/homepage/DressStyle";
+import VapeCategories from "@/components/homepage/VapeCategories";
 import Header from "@/components/homepage/Header";
 import Reviews from "@/components/homepage/Reviews";
 import { Product } from "@/types/product.types";
 import { Review } from "@/types/review.types";
+import Image from 'next/image';
 
 export const newArrivalsData: Product[] = [
   {
     id: 1,
-    title: "T-shirt with Tape Details",
-    srcUrl: "/images/pic1.png",
-    gallery: ["/images/pic1.png", "/images/pic10.png", "/images/pic11.png"],
-    price: 120,
+    title: "SMOK Nord 50W Pod Kit",
+    srcUrl: "/images/devices/smok-nord-50w-main.png",
+    gallery: [
+      "/images/devices/smok-nord-50w-main.png",
+      "/images/devices/smok-nord-50w-main.png",
+      "/images/devices/smok-nord-50w-main.png"
+    ],
+    price: 34.99,
     discount: {
       amount: 0,
       percentage: 0,
@@ -21,187 +26,179 @@ export const newArrivalsData: Product[] = [
   },
   {
     id: 2,
-    title: "Skinny Fit Jeans",
-    srcUrl: "/images/pic2.png",
-    gallery: ["/images/pic2.png"],
-    price: 260,
+    title: "Geek Vape Aegis Legend 2",
+    srcUrl: "/images/devices/smok-nord-50w-main.png",
+    gallery: ["/images/devices/smok-nord-50w-main.png"],
+    price: 89.99,
     discount: {
       amount: 0,
-      percentage: 20,
+      percentage: 15,
     },
-    rating: 3.5,
+    rating: 4.8,
   },
   {
     id: 3,
-    title: "Chechered Shirt",
-    srcUrl: "/images/pic3.png",
-    gallery: ["/images/pic3.png"],
-    price: 180,
+    title: "Voopoo Drag X Pod Mod",
+    srcUrl: "/images/devices/smok-nord-50w-main.png",
+    gallery: ["/images/devices/smok-nord-50w-main.png"],
+    price: 44.99,
     discount: {
       amount: 0,
       percentage: 0,
     },
-    rating: 4.5,
+    rating: 4.6,
   },
   {
     id: 4,
-    title: "Sleeve Striped T-shirt",
-    srcUrl: "/images/pic4.png",
-    gallery: ["/images/pic4.png", "/images/pic10.png", "/images/pic11.png"],
-    price: 160,
+    title: "Uwell Caliburn G2",
+    srcUrl: "/images/devices/smok-nord-50w-main.png",
+    gallery: ["/images/devices/smok-nord-50w-main.png"],
+    price: 29.99,
     discount: {
       amount: 0,
-      percentage: 30,
+      percentage: 20,
     },
-    rating: 4.5,
+    rating: 4.7,
   },
 ];
 
 export const topSellingData: Product[] = [
   {
     id: 5,
-    title: "Vertical Striped Shirt",
-    srcUrl: "/images/pic5.png",
-    gallery: ["/images/pic5.png", "/images/pic10.png", "/images/pic11.png"],
-    price: 232,
+    title: "Elf Bar BC5000",
+    srcUrl: "/images/devices/smok-nord-50w-main.png",
+    gallery: ["/images/devices/smok-nord-50w-main.png"],
+    price: 16.99,
     discount: {
       amount: 0,
-      percentage: 20,
+      percentage: 0,
     },
-    rating: 5.0,
+    rating: 4.9,
   },
   {
     id: 6,
-    title: "Courage Graphic T-shirt",
-    srcUrl: "/images/pic6.png",
-    gallery: ["/images/pic6.png", "/images/pic10.png", "/images/pic11.png"],
-    price: 145,
+    title: "Lost Vape Orion Plus",
+    srcUrl: "/images/devices/smok-nord-50w-main.png",
+    gallery: ["/images/devices/smok-nord-50w-main.png"],
+    price: 49.99,
     discount: {
       amount: 0,
-      percentage: 0,
+      percentage: 10,
     },
-    rating: 4.0,
+    rating: 4.5,
   },
   {
     id: 7,
-    title: "Loose Fit Bermuda Shorts",
-    srcUrl: "/images/pic7.png",
-    gallery: ["/images/pic7.png"],
-    price: 80,
+    title: "Vaporesso XROS 3",
+    srcUrl: "/images/devices/smok-nord-50w-main.png",
+    gallery: ["/images/devices/smok-nord-50w-main.png"],
+    price: 24.99,
     discount: {
       amount: 0,
       percentage: 0,
     },
-    rating: 3.0,
+    rating: 4.3,
   },
   {
     id: 8,
-    title: "Faded Skinny Jeans",
-    srcUrl: "/images/pic8.png",
-    gallery: ["/images/pic8.png"],
-    price: 210,
+    title: "JUUL 2 Starter Kit",
+    srcUrl: "/images/devices/smok-nord-50w-main.png",
+    gallery: ["/images/devices/smok-nord-50w-main.png"],
+    price: 39.99,
     discount: {
       amount: 0,
       percentage: 0,
     },
-    rating: 4.5,
+    rating: 4.4,
   },
 ];
 
 export const relatedProductData: Product[] = [
   {
     id: 12,
-    title: "Polo with Contrast Trims",
-    srcUrl: "/images/pic12.png",
-    gallery: ["/images/pic12.png", "/images/pic10.png", "/images/pic11.png"],
-    price: 242,
+    title: "Premium E-Liquid Pack",
+    srcUrl: "/images/devices/smok-nord-50w-main.png",
+    gallery: ["/images/devices/smok-nord-50w-main.png"],
+    price: 59.99,
     discount: {
       amount: 0,
       percentage: 20,
     },
-    rating: 4.0,
+    rating: 4.7,
   },
   {
     id: 13,
-    title: "Gradient Graphic T-shirt",
-    srcUrl: "/images/pic13.png",
-    gallery: ["/images/pic13.png", "/images/pic10.png", "/images/pic11.png"],
-    price: 145,
+    title: "Replacement Coils 5-Pack",
+    srcUrl: "/images/devices/smok-nord-50w-main.png",
+    gallery: ["/images/devices/smok-nord-50w-main.png"],
+    price: 14.99,
     discount: {
       amount: 0,
       percentage: 0,
     },
-    rating: 3.5,
+    rating: 4.6,
   },
   {
     id: 14,
-    title: "Polo with Tipping Details",
-    srcUrl: "/images/pic14.png",
-    gallery: ["/images/pic14.png"],
-    price: 180,
+    title: "Pod Cartridge Bundle",
+    srcUrl: "/images/devices/smok-nord-50w-main.png",
+    gallery: ["/images/devices/smok-nord-50w-main.png"],
+    price: 19.99,
     discount: {
       amount: 0,
       percentage: 0,
     },
-    rating: 4.5,
+    rating: 4.8,
   },
   {
     id: 15,
-    title: "Black Striped T-shirt",
-    srcUrl: "/images/pic15.png",
-    gallery: ["/images/pic15.png"],
-    price: 150,
+    title: "Battery Pack 18650",
+    srcUrl: "/images/devices/smok-nord-50w-main.png",
+    gallery: ["/images/devices/smok-nord-50w-main.png"],
+    price: 24.99,
     discount: {
       amount: 0,
-      percentage: 30,
+      percentage: 15,
     },
-    rating: 5.0,
+    rating: 4.9,
   },
 ];
 
 export const reviewsData: Review[] = [
   {
     id: 1,
-    user: "Alex K.",
-    content:
-      '"Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.”',
+    user: "Mike R.",
+    content: "Best wholesale prices I've found for vape products. The customer service is exceptional, and shipping is always fast and reliable.",
     rating: 5,
-    date: "August 14, 2023",
+    date: "March 15, 2024",
   },
   {
     id: 2,
-    user: "Sarah M.",
-    content: `"I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”`,
+    user: "David S.",
+    content: "As a vape shop owner, finding reliable wholesale suppliers is crucial. This platform has never let me down with their product quality and competitive pricing.",
     rating: 5,
-    date: "August 15, 2023",
+    date: "March 14, 2024",
   },
   {
     id: 3,
-    user: "Ethan R.",
-    content: `"This t-shirt is a must-have for anyone who appreciates good design. The minimalistic yet stylish pattern caught my eye, and the fit is perfect. I can see the designer's touch in every aspect of this shirt."`,
+    user: "Lisa M.",
+    content: "The variety of products available is impressive. From pod systems to mods, they have everything my store needs at great wholesale prices.",
     rating: 5,
-    date: "August 16, 2023",
+    date: "March 13, 2024",
   },
   {
     id: 4,
-    user: "Olivia P.",
-    content: `"As a UI/UX enthusiast, I value simplicity and functionality. This t-shirt not only represents those principles but also feels great to wear. It's evident that the designer poured their creativity into making this t-shirt stand out."`,
+    user: "James K.",
+    content: "Their bulk ordering system is streamlined and efficient. The wholesale discounts are fantastic, and the product authenticity is guaranteed.",
     rating: 5,
-    date: "August 17, 2023",
+    date: "March 12, 2024",
   },
   {
     id: 5,
-    user: "Liam K.",
-    content: `"This t-shirt is a fusion of comfort and creativity. The fabric is soft, and the design speaks volumes about the designer's skill. It's like wearing a piece of art that reflects my passion for both design and fashion."`,
+    user: "Sarah P.",
+    content: "Outstanding wholesale platform for vape products. The automated reordering system has made managing my inventory so much easier.",
     rating: 5,
-    date: "August 18, 2023",
-  },
-  {
-    id: 6,
-    user: "Samantha D.",
-    content: `"I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt."`,
-    rating: 5,
-    date: "August 19, 2023",
+    date: "March 11, 2024",
   },
 ];
 
@@ -221,13 +218,13 @@ export default function Home() {
         </div>
         <div className="mb-[50px] sm:mb-20">
           <ProductListSec
-            title="top selling"
+            title="BEST SELLERS"
             data={topSellingData}
-            viewAllLink="/shop#top-selling"
+            viewAllLink="/shop#best-sellers"
           />
         </div>
         <div className="mb-[50px] sm:mb-20">
-          <DressStyle />
+          <VapeCategories />
         </div>
         <Reviews data={reviewsData} />
       </main>

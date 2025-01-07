@@ -131,7 +131,7 @@ Contributions are welcome! If you'd like to contribute, Please follow these step
 
 ## Issues
 
-Feel free to submit issues for any bugs, feature requests, or general questions related to the project. You can also reach out via [email](mailto:mr.mohammadoftadeh@gmail.com) for support.
+Feel free to submit issues for any bugs, feature requests, or general questions related to the project. You can also reach out via [email](mailto:saipraffulindirala@gmail.com) for support.
 
 ## License
 
@@ -141,6 +141,6 @@ This project is licensed under the MIT License - see the [LICENSE](https://opens
 
 Feel free to reach out to:
 
-- **Name**: Mohammad Oftadeh
-- **Email**: [mr.mohammadoftadeh@gmail.com](mailto:mr.mohammadoftadeh@gmail.com)
-- **GitHub**: [https://github.com/mohammadoftadeh](https://github.com/mohammadoftadeh)
+- **Name**: Prafful Indirala
+- **Email**: [saipraffulindirala@gmail.com](mailto:saipraffulindirala@gmail.com)
+- **GitHub**: [https://github.com/prafful-indirala](https://github.com/prafful-indirala)

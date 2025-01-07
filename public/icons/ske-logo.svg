@@ -1,0 +1,13 @@
+
+<svg width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <!-- Main Text: SKE -->
+    <text x="10" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="30" fill="white">SKE</text>
+    
+    <!-- Divider Line -->
+    <rect x="80" y="10" width="2" height="30" fill="white"/>
+
+    <!-- Sub Text: Crystal Bar -->
+    <text x="100" y="35" font-family="Arial, sans-serif" font-size="20" fill="white">Crystal Bar</text>
+  </g>
+</svg>

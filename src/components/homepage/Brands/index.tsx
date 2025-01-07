@@ -4,7 +4,7 @@ import React from "react";
 const brandsData: { id: string; srcUrl: string }[] = [
   {
     id: "versace",
-    srcUrl: "/icons/versace-logo.svg",
+    srcUrl: "/icons/ske-logo.svg",
   },
   {
     id: "zara",
@@ -22,6 +22,7 @@ const brandsData: { id: string; srcUrl: string }[] = [
     id: "calvin-klein",
     srcUrl: "/icons/calvin-klein-logo.svg",
   },
+
 ];
 
 const Brands = () => {
