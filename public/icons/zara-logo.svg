@@ -1,3 +1,14 @@
-<svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
-  <text x="10" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="30" fill="white">HAYATHI</text>
+<svg width="300" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Circular Motif -->
+  <circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="none" />
+  
+  <!-- Vapor Effect -->
+  <path d="M35 65 C45 45, 65 45, 75 65" stroke="white" stroke-width="2" fill="none" />
+  <path d="M40 75 C50 55, 70 55, 80 75" stroke="white" stroke-width="2" fill="none" />
+
+  <!-- Brand Name -->
+  <text x="150" y="50" font-family="Arial, sans-serif" font-size="30" fill="white" font-weight="bold" text-anchor="middle">VAPESPHERE</text>
+  
+  <!-- Tagline -->
+  <text x="150" y="75" font-family="Arial, sans-serif" font-size="15" fill="white" text-anchor="middle">Vape Wholesaler</text>
 </svg>
