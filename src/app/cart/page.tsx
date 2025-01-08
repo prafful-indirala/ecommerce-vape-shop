@@ -1,23 +1,20 @@
 "use client";
 
-import BreadcrumbCart from "@/components/cart-page/BreadcrumbCart";
-import ProductCard from "@/components/cart-page/ProductCard";
-import { Button } from "@/components/ui/button";
-import InputGroup from "@/components/ui/input-group";
-import { cn } from "@/lib/utils";
-import { integralCF } from "@/styles/fonts";
+import BreadcrumbCart from "../../components/cart-page/BreadcrumbCart";
+import ProductCard from "../../components/cart-page/ProductCard";
+import { Button } from "../../components/ui/button";
+import InputGroup from "../../components/ui/input-group";
+import { useCartStore } from "../../lib/stores/useCartStore";
+import { cn } from "../../lib/utils";
+import { integralCF } from "../../styles/fonts";
+import Link from "next/link";
+import React from "react";
 import { FaArrowRight } from "react-icons/fa6";
 import { MdOutlineLocalOffer } from "react-icons/md";
 import { TbBasketExclamation } from "react-icons/tb";
-import React from "react";
-import { RootState } from "@/lib/store";
-import { useAppSelector } from "@/lib/hooks/redux";
-import Link from "next/link";
 
 export default function CartPage() {
-  const { cart, totalPrice, adjustedTotalPrice } = useAppSelector(
-    (state: RootState) => state.carts
-  );
+  const { cart, totalPrice, adjustedTotalPrice } = useCartStore();
 
   return (
     <main className="pb-20">
