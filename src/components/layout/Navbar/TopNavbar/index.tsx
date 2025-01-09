@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { integralCF } from "@/styles/fonts";
 import Link from "next/link";
@@ -13,6 +15,7 @@ import Image from "next/image";
 import InputGroup from "@/components/ui/input-group";
 import ResTopNavbar from "./ResTopNavbar";
 import CartBtn from "./CartBtn";
+import { useSession, signOut } from "next-auth/react";
 
 const data: NavMenu = [
   {
@@ -70,6 +73,8 @@ const data: NavMenu = [
 ];
 
 const TopNavbar = () => {
+  const { data: session } = useSession();
+
   return (
     <nav className="sticky top-0 bg-white z-20">
       <div className="flex relative max-w-frame mx-auto items-center justify-between md:justify-start py-5 md:py-6 px-4 xl:px-0">
@@ -131,16 +136,30 @@ const TopNavbar = () => {
             />
           </Link>
           <CartBtn />
-          <Link href="/#signin" className="p-1">
-            <Image
-              priority
-              src="/icons/user.svg"
-              height={100}
-              width={100}
-              alt="user"
-              className="max-w-[22px] max-h-[22px]"
-            />
-          </Link>
+
+          {session ?
+            <div className="flex items-center space-x-4">
+              <span>Welcome, {session.user?.name}</span>
+              <button
+                onClick={() => signOut()}
+                className="text-gray-800 hover:text-gray-600"
+              >
+                Sign out
+              </button>
+            </div>
+            :
+            <Link href="/auth/signin" className="p-1">
+              <Image
+                priority
+                src="/icons/user.svg"
+                height={100}
+                width={100}
+                alt="user"
+                className="max-w-[22px] max-h-[22px]"
+              />
+            </Link>
+          }
+
         </div>
       </div>
     </nav>
