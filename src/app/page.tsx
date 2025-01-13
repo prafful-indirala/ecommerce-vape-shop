@@ -1,3 +1,4 @@
+'use client';
 import ProductListSec from "@/components/common/ProductListSec";
 import Brands from "@/components/homepage/Brands";
 import VapeCategories from "@/components/homepage/VapeCategories";
@@ -5,164 +6,9 @@ import Header from "@/components/homepage/Header";
 import Reviews from "@/components/homepage/Reviews";
 import { Product } from "@/types/product.types";
 import { Review } from "@/types/review.types";
-import Image from 'next/image';
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase/client";
 
-export const newArrivalsData: Product[] = [
-  {
-    id: 1,
-    title: "SMOK Nord 50W Pod Kit",
-    srcUrl: "/images/devices/smok-nord-50w-main.png",
-    gallery: [
-      "/images/devices/smok-nord-50w-main.png",
-      "/images/devices/smok-nord-50w-main.png",
-      "/images/devices/smok-nord-50w-main.png"
-    ],
-    price: 34.99,
-    discount: {
-      amount: 0,
-      percentage: 0,
-    },
-    rating: 4.5,
-  },
-  {
-    id: 2,
-    title: "Geek Vape Aegis Legend 2",
-    srcUrl: "/images/devices/smok-nord-50w-main.png",
-    gallery: ["/images/devices/smok-nord-50w-main.png"],
-    price: 89.99,
-    discount: {
-      amount: 0,
-      percentage: 15,
-    },
-    rating: 4.8,
-  },
-  {
-    id: 3,
-    title: "Voopoo Drag X Pod Mod",
-    srcUrl: "/images/devices/smok-nord-50w-main.png",
-    gallery: ["/images/devices/smok-nord-50w-main.png"],
-    price: 44.99,
-    discount: {
-      amount: 0,
-      percentage: 0,
-    },
-    rating: 4.6,
-  },
-  {
-    id: 4,
-    title: "Uwell Caliburn G2",
-    srcUrl: "/images/devices/smok-nord-50w-main.png",
-    gallery: ["/images/devices/smok-nord-50w-main.png"],
-    price: 29.99,
-    discount: {
-      amount: 0,
-      percentage: 20,
-    },
-    rating: 4.7,
-  },
-];
-
-export const topSellingData: Product[] = [
-  {
-    id: 5,
-    title: "Elf Bar BC5000",
-    srcUrl: "/images/devices/smok-nord-50w-main.png",
-    gallery: ["/images/devices/smok-nord-50w-main.png"],
-    price: 16.99,
-    discount: {
-      amount: 0,
-      percentage: 0,
-    },
-    rating: 4.9,
-  },
-  {
-    id: 6,
-    title: "Lost Vape Orion Plus",
-    srcUrl: "/images/devices/smok-nord-50w-main.png",
-    gallery: ["/images/devices/smok-nord-50w-main.png"],
-    price: 49.99,
-    discount: {
-      amount: 0,
-      percentage: 10,
-    },
-    rating: 4.5,
-  },
-  {
-    id: 7,
-    title: "Vaporesso XROS 3",
-    srcUrl: "/images/devices/smok-nord-50w-main.png",
-    gallery: ["/images/devices/smok-nord-50w-main.png"],
-    price: 24.99,
-    discount: {
-      amount: 0,
-      percentage: 0,
-    },
-    rating: 4.3,
-  },
-  {
-    id: 8,
-    title: "JUUL 2 Starter Kit",
-    srcUrl: "/images/devices/smok-nord-50w-main.png",
-    gallery: ["/images/devices/smok-nord-50w-main.png"],
-    price: 39.99,
-    discount: {
-      amount: 0,
-      percentage: 0,
-    },
-    rating: 4.4,
-  },
-];
-
-export const relatedProductData: Product[] = [
-  {
-    id: 12,
-    title: "Premium E-Liquid Pack",
-    srcUrl: "/images/devices/smok-nord-50w-main.png",
-    gallery: ["/images/devices/smok-nord-50w-main.png"],
-    price: 59.99,
-    discount: {
-      amount: 0,
-      percentage: 20,
-    },
-    rating: 4.7,
-  },
-  {
-    id: 13,
-    title: "Replacement Coils 5-Pack",
-    srcUrl: "/images/devices/smok-nord-50w-main.png",
-    gallery: ["/images/devices/smok-nord-50w-main.png"],
-    price: 14.99,
-    discount: {
-      amount: 0,
-      percentage: 0,
-    },
-    rating: 4.6,
-  },
-  {
-    id: 14,
-    title: "Pod Cartridge Bundle",
-    srcUrl: "/images/devices/smok-nord-50w-main.png",
-    gallery: ["/images/devices/smok-nord-50w-main.png"],
-    price: 19.99,
-    discount: {
-      amount: 0,
-      percentage: 0,
-    },
-    rating: 4.8,
-  },
-  {
-    id: 15,
-    title: "Battery Pack 18650",
-    srcUrl: "/images/devices/smok-nord-50w-main.png",
-    gallery: ["/images/devices/smok-nord-50w-main.png"],
-    price: 24.99,
-    discount: {
-      amount: 0,
-      percentage: 15,
-    },
-    rating: 4.9,
-  },
-];
 
 export const reviewsData: Review[] = [
   {
@@ -203,6 +49,36 @@ export const reviewsData: Review[] = [
 ];
 
 export default function Home() {
+
+  const [newArrivals, setNewArrivals] = useState<Product[]>([]);
+  const [topSelling, setTopSelling] = useState<Product[]>([]);
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data: newArrivalsData } = await supabase
+        .from('products')
+        .select('*')
+        .eq('category_id', 1); // Assuming category_id 1 is for new arrivals
+
+      const { data: topSellingData } = await supabase
+        .from('products')
+        .select('*')
+        .eq('category_id', 2); // Assuming category_id 2 is for top selling
+
+      const { data: relatedProductData } = await supabase
+        .from('products')
+        .select('*')
+        .eq('category_id', 3); // Assuming category_id 3 is for related products
+
+      setNewArrivals(newArrivalsData);
+      setTopSelling(topSellingData);
+      setRelatedProducts(relatedProductData);
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <>
       <Header />
@@ -210,7 +86,7 @@ export default function Home() {
       <main className="my-[50px] sm:my-[72px]">
         <ProductListSec
           title="NEW ARRIVALS"
-          data={newArrivalsData}
+          data={newArrivals}
           viewAllLink="/shop#new-arrivals"
         />
         <div className="max-w-frame mx-auto px-4 xl:px-0">
@@ -219,7 +95,7 @@ export default function Home() {
         <div className="mb-[50px] sm:mb-20">
           <ProductListSec
             title="BEST SELLERS"
-            data={topSellingData}
+            data={topSelling}
             viewAllLink="/shop#best-sellers"
           />
         </div>
