@@ -1,35 +1,101 @@
 "use client";
 
-import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 export default function SignIn() {
   const router = useRouter();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [needsEmailConfirmation, setNeedsEmailConfirmation] = useState(false);
+  const supabase = createClientComponentClient();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+    setNeedsEmailConfirmation(false);
 
     const formData = new FormData(e.currentTarget);
-    const response = await signIn("credentials", {
-      email: formData.get("email"),
-      password: formData.get("password"),
-      redirect: false,
-    });
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
 
-    if (response?.error) {
-      setError("Invalid credentials");
-      setLoading(false);
-    } else {
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        if (error.message.toLowerCase().includes("email not confirmed")) {
+          setNeedsEmailConfirmation(true);
+        } else {
+          setError(error.message);
+        }
+        setLoading(false);
+        return;
+      }
+
       router.push("/");
       router.refresh();
+    } catch (error) {
+      setError("An error occurred during sign in");
+      setLoading(false);
     }
   };
+
+  const handleResendConfirmation = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    const email = formData.get("email") as string;
+
+    if (!email) {
+      setError("Please enter your email address");
+      return;
+    }
+
+    try {
+      const { error } = await supabase.auth.resend({
+        type: 'signup',
+        email,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
+      });
+
+      if (error) {
+        setError(error.message);
+      } else {
+        setError("");
+        setNeedsEmailConfirmation(true);
+      }
+    } catch (error) {
+      setError("Failed to resend confirmation email");
+    }
+  };
+
+  if (needsEmailConfirmation) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8 text-center">
+          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+            Email Confirmation Required
+          </h2>
+          <p className="mt-2 text-gray-600">
+            Please check your email and click the confirmation link to activate your account.
+          </p>
+          <button
+            onClick={handleResendConfirmation}
+            className="mt-4 text-indigo-600 hover:text-indigo-500"
+          >
+            Resend confirmation email
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
