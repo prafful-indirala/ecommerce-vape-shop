@@ -71,9 +71,9 @@ export default function Home() {
         .select('*')
         .eq('category_id', 3); // Assuming category_id 3 is for related products
 
-      setNewArrivals(newArrivalsData);
-      setTopSelling(topSellingData);
-      setRelatedProducts(relatedProductData);
+      setNewArrivals(newArrivalsData || []);
+      setTopSelling(topSellingData || []);
+      setRelatedProducts(relatedProductData || []);
     };
 
     fetchProducts();
